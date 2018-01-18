@@ -3,11 +3,11 @@ package com.media.app.UI;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
+
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -22,6 +22,10 @@ import com.media.app.UI.Models.More_Model;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+
+import static com.media.app.UI.Adapters.More_Adapter.pack_name;
+import static com.media.app.UI.Adapters.More_Adapter.urlList;
+
 public class More_Activity extends AppCompatActivity {
 
     ArrayList<String> data4 = new ArrayList<>();
@@ -32,7 +36,7 @@ public class More_Activity extends AppCompatActivity {
     String app_url = null;
     String app_package = null;
     String dataa = null;
-  //  String DB = "db";
+    String DB = "db";
   ArrayList<More_Model> singleItem = null;
     private GridLayoutManager lLayout;
 
@@ -77,7 +81,7 @@ public class More_Activity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.more, menu);
 
      //   final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
@@ -91,20 +95,20 @@ public class More_Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.install) {
+        if (id == R.id.installm) {
 
             Toast.makeText(getApplicationContext(), "This will install the selected Application ", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(More_Activity.this,App_Download_Service.class);
-            startActivity(intent);
+            Intent intentm = new Intent(More_Activity.this,App_Download_Service_more.class);
+            startService(intentm);
 
-      /*      Bundle x = new Bundle();
+            Bundle x = new Bundle();
 
             x.putStringArrayList("urlMap",urlList);
             x.putStringArrayList("urlPack", pack_name);
             x.putString("check",DB);
-            intent.putExtras(x);
-            startService(intent); */
+            intentm.putExtras(x);
+            startService(intentm);
 
             return true;
         }

@@ -13,25 +13,24 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.media.app.R;
-import com.media.app.UI.Adapters.Download_Adapter;
 
+import com.media.app.UI.Adapters.Download_more_Adapter;
 
+import static com.media.app.UI.Adapters.More_Adapter.imageList;
+import static com.media.app.UI.Adapters.More_Adapter.nameList;
+import static com.media.app.UI.Adapters.More_Adapter.pack_name;
 
-
-import static com.media.app.UI.Adapters.SectionListDataAdapter.imageList;
-import static com.media.app.UI.Adapters.SectionListDataAdapter.nameList;
-import static com.media.app.UI.Adapters.SectionListDataAdapter.pack_name;
 
 /**
- * Created by harsh.arora on 06-11-2017.
+ * Created by harsh.arora on 10-01-2018.
  */
 
-public class Downloading extends AppCompatActivity {
+public class Downloading_more extends AppCompatActivity {
 
-// static Button openbutton;
-private BroadcastReceiver mReceiver;
+    // static Button openbutton;
+    private BroadcastReceiver mReceiver;
 
-    public Downloading() {
+    public Downloading_more() {
         // Required empty public constructor
     }
 
@@ -41,7 +40,7 @@ private BroadcastReceiver mReceiver;
         setContentView(R.layout.down_list);
 
 
-      //  openbutton = (Button)findViewById(R.id.openbutton);
+        //  openbutton = (Button)findViewById(R.id.openbutton);
 
         Log.d("downloada", "imageList"  + imageList.toString());
         Log.d("downloada", "nameList"  + nameList.toString());
@@ -64,13 +63,13 @@ private BroadcastReceiver mReceiver;
 
         RecyclerView rv = (RecyclerView)findViewById(R.id.down_list_recycle);
         rv.setHasFixedSize(true);
-        Download_Adapter adapter = new Download_Adapter(this,imageList,nameList,pack_name);
+        Download_more_Adapter adapter = new Download_more_Adapter(this,imageList,nameList,pack_name);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         rv.setAdapter(adapter);
 
 
-        IntentFilter intentFilter = new IntentFilter("com.pratap.gplaystore.Downloading");
+        IntentFilter intentFilter = new IntentFilter("com.media.app.UI.Downloading_more");
 
         mReceiver = new BroadcastReceiver() {
 
@@ -120,7 +119,7 @@ private BroadcastReceiver mReceiver;
 
             RecyclerView rv = (RecyclerView)findViewById(R.id.down_list_recycle);
             rv.setHasFixedSize(true);
-            Download_Adapter adapter = new Download_Adapter(this,imageList,nameList,pack_name);
+            Download_more_Adapter adapter = new Download_more_Adapter(this,imageList,nameList,pack_name);
             rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
             rv.setAdapter(adapter);
@@ -132,4 +131,5 @@ private BroadcastReceiver mReceiver;
         }
         return true;
     }
+
 }

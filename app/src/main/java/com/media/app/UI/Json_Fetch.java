@@ -60,8 +60,9 @@ public class Json_Fetch extends AsyncTask<String, String, ArrayList<String>> {
                     String image_url = json_data1.getString("imageURL");
                     String app_url = json_data1.getString("APKlocation");
                     String app_package = json_data1.getString("APPPackage");
+                    String description = json_data1.getString("Description");
                    // Log.d("harsh", "doInBackground data:" +title+"|"+app_name+"|"+image_url+"|"+app_url+"|"+app_package);
-                    String x =  title+"-"+app_name+"|"+image_url+"|"+app_url+"|"+app_package;
+                    String x =  title+"-"+app_name+"|"+image_url+"|"+app_url+"|"+app_package+"|"+description;
                         a.add(x);
                 }
             }
@@ -72,6 +73,7 @@ public class Json_Fetch extends AsyncTask<String, String, ArrayList<String>> {
             String image_url = null;
             String app_url = null;
             String app_package = null;
+            String description = null;
             String data = null;
             for (Object object: a) {
                 String[] separated =  object.toString().trim().split("\\-");
@@ -83,6 +85,7 @@ public class Json_Fetch extends AsyncTask<String, String, ArrayList<String>> {
                     image_url = dataarr[1];
                     app_url = dataarr[2];
                     app_package = dataarr[3];
+                    description = dataarr[4];
                     Log.d("harsh", "topic"+topic);
                     Log.d("harsh", "data:"+app_name+","+image_url);
                 }else{
@@ -92,6 +95,7 @@ public class Json_Fetch extends AsyncTask<String, String, ArrayList<String>> {
                     image_url = dataarr[1];
                     app_url = dataarr[2];
                     app_package = dataarr[3];
+                    description = dataarr[4];
                     //Log.d("harsh", "topic"+topic);
                     Log.d("harsh", "data:"+app_name+","+image_url);
                 }

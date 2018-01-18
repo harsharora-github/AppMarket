@@ -5,6 +5,8 @@ package com.media.app.UI.Adapters;
  */
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,21 +20,25 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.media.app.R;
+import com.media.app.UI.Description;
+import com.media.app.UI.MainActivity;
 import com.media.app.UI.Models.SingleItemModel;
 
 
 import java.util.ArrayList;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 
 public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListDataAdapter.SingleItemRowHolder> {
 
     private ArrayList<SingleItemModel> itemsList;
 
-   public static ArrayList urlList;
+    public static ArrayList urlList;
     public static ArrayList pack_name;
     public static ArrayList imageList;
     public static ArrayList nameList;
+    public static ArrayList description;
 
 
     private Context mContext;
@@ -100,6 +106,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
         pack_name = new ArrayList<>();
         imageList = new ArrayList<>();
         nameList = new ArrayList<>();
+        description = new ArrayList();
 
 
 
@@ -109,7 +116,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
         Glide.with(mContext)
                 .load(singleItem.getUrl())
-                .centerCrop()
+                .fitCenter()
                 .placeholder(R.drawable.android)
                 .error(R.drawable.android)
                 .into(holder.itemImage);
@@ -120,6 +127,14 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
             public void onClick(View v) {
 
                 Toast.makeText(v.getContext(), "This will show App description ", Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(v.getContext(), Description.class);
+                Bundle x = new Bundle();
+
+                x.putString("images",singleItem.getUrl());
+                x.putString("desc",singleItem.getDescription());
+                in.putExtras(x);
+                v.getContext().startActivity(in);
+
             }
         });
 
@@ -188,6 +203,7 @@ public class SectionListDataAdapter extends RecyclerView.Adapter<SectionListData
 
                         case R.id.itemImage:
                             Toast.makeText(v.getContext(), "This will show App description ", Toast.LENGTH_SHORT).show();
+
                             break;
                         case R.id.checkboxx:
 

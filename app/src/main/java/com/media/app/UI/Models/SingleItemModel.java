@@ -18,11 +18,12 @@ public class SingleItemModel {
     public SingleItemModel() {
     }
 
-    public SingleItemModel(String name, String image_url, String app_url, String app_package) {
+    public SingleItemModel(String name, String image_url, String app_url, String app_package,String description) {
         this.name = name;
         this.image_url = image_url;
         this.app_url=app_url;
         this.app_package=app_package;
+        this.description=description;
     }
 
 

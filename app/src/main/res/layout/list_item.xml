@@ -33,9 +33,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:theme="@style/MyButton"
             android:text="more"
-            android:textColor="#FFF" />
+            android:textColor="#FFF"
+            android:theme="@style/MyButton" />
 
 
     </RelativeLayout>

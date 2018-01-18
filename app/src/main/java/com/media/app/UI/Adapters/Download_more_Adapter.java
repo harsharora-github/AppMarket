@@ -16,18 +16,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.media.app.R;
-
+import com.media.app.UI.Downloading_more;
 
 import java.util.ArrayList;
 
-public class Download_Adapter extends RecyclerView.Adapter<Download_Adapter.downholder> {
+/**
+ * Created by harsh.arora on 10-01-2018.
+ */
+
+public class Download_more_Adapter extends RecyclerView.Adapter<Download_more_Adapter.downholdermore> {
 
     ArrayList imageList, nameList,pack_name;
 
 
     private Context context;
 
-    public Download_Adapter(Context context, ArrayList imageList, ArrayList nameList, ArrayList pack_name) {
+    public Download_more_Adapter(Downloading_more context, ArrayList imageList, ArrayList nameList, ArrayList pack_name) {
         this.context = context;
         this.imageList = imageList;
         this.nameList = nameList;
@@ -37,14 +41,15 @@ public class Download_Adapter extends RecyclerView.Adapter<Download_Adapter.down
     }
 
 
-    public static class downholder extends RecyclerView.ViewHolder {
+
+    public static class downholdermore extends RecyclerView.ViewHolder {
         public CardView mCardView;
         TextView down_title,Installl;
         ImageView img_down;
         Button openbutton;
         ProgressBar prog;
 
-        public downholder(View v) {
+        public downholdermore(View v) {
             super(v);
             this.mCardView = (CardView) v.findViewById(R.id.card_down);
             this.down_title = (TextView) v.findViewById(R.id.downTitle);
@@ -56,44 +61,43 @@ public class Download_Adapter extends RecyclerView.Adapter<Download_Adapter.down
         }
     }
 
-
     @Override
-    public Download_Adapter.downholder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Download_more_Adapter.downholdermore onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_down, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        downholder vh = new downholder(v);
+        Download_more_Adapter.downholdermore vh = new Download_more_Adapter.downholdermore(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(downholder holder, final int i) {
+    public void onBindViewHolder(Download_more_Adapter.downholdermore holder,final int i) {
 
         holder.down_title.setText(nameList.get(i).toString());
-
         Glide.with(context)
                 .load(imageList.get(i))
                 .fitCenter()
                 .placeholder(R.drawable.android)
                 .error(R.drawable.android)
                 .into(holder.img_down);
-if(pack_name != null) {
-    if (openApp(context, pack_name.get(i).toString())) {
-        holder.openbutton.setVisibility(View.VISIBLE);
-        holder.prog.setVisibility(View.INVISIBLE);
-        holder.Installl.setVisibility(View.INVISIBLE);
-    }
-}
+        if(pack_name != null) {
+            if (openApp(context, pack_name.get(i).toString())) {
+                holder.openbutton.setVisibility(View.VISIBLE);
+                holder.prog.setVisibility(View.INVISIBLE);
+                holder.Installl.setVisibility(View.INVISIBLE);
+            }
+        }
 
-holder.openbutton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        openApp1(context,pack_name.get(i).toString());
-        Log.d("open", "onClick: ");
-    }
-});
+        holder.openbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openApp1(context,pack_name.get(i).toString());
+                Log.d("open", "onClick: ");
+            }
+        });
 
     }
+
 
     @Override
     public int getItemCount() {
